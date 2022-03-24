@@ -1,0 +1,27 @@
+#outlined-basic{
+    height:100%;
+    width: 190px;
+    
+}
+
+.AppBar{
+    color: black;
+}
+
+.Logo{
+    height:100px;
+    width:100px;
+    padding:10px;
+}
+
+.divtable{
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+}
+
+.createbtn{
+    width:190px;
+}
+
