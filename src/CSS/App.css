@@ -4,6 +4,10 @@
     
 }
 
+#predict{
+    color: aqua;
+}
+
 .AppBar{
     color: black;
 }
@@ -23,5 +27,8 @@
 
 .createbtn{
     width:190px;
+    color: aqua;
 }
+
+
 

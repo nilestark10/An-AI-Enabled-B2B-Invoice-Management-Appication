@@ -7,7 +7,7 @@ import '../CSS/App.css';
 export default function MyAppBar() {
   return (
     <Box  sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar style = {{backgroundColor :"#1e3f94"}} position="static">
         <img className="Logo" src="https://upload.wikimedia.org/wikipedia/commons/3/33/Vanamo_Logo.png" alt="logo" />
       </AppBar>
     </Box>
