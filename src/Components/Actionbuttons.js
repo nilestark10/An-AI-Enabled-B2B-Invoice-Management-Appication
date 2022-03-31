@@ -1,8 +1,10 @@
 import React from "react";
 import Button from '@mui/material/Button';
 import SearchFields from './Searchfield';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../theme.js';
 import '../CSS/App.css';
-import { CreateAddModalButton, CreateDeleteModalButton } from "./crudButtons";
+import { CreateAddModalButton, CreateDeleteModalButton, CreateEditModalButton } from "./crudButtons";
 
 
 
@@ -11,22 +13,25 @@ function CreateBtn({ text, onClick }) {
 }
 function ActionButtons() {
     return (
-        <div className="divtable" >
-            <div >
-                <CreateBtn id="predict" text="PREDICT" onClick={() => { }} />
-                <CreateBtn text="ANALYTICS VIEW" onClick={() => { }} />
-                <CreateBtn text="ADVANCE SEARCH" onClick={() => { }} />
-            </div>
-            <SearchFields />
-            <div>
-                <CreateAddModalButton />
-                <CreateAddModalButton />
-                <CreateDeleteModalButton deleteFn={() => {
-                    console.log("deleted item");
-                }} />
+        <ThemeProvider theme={theme}>
+            <div className="actionbutton" >
+                <div >
+                    {/* <CreateBtn id="predict" text="PREDICT" onClick={() => { }} /> */}
+                    <Button className="createbtn" variant="contained">PREDICT</Button>
+                    <CreateBtn text="ANALYTICS VIEW" onClick={() => { }} />
+                    <CreateBtn text="ADVANCE SEARCH" onClick={() => { }} />
+                </div>
+                <SearchFields />
+                <div>
+                    <CreateAddModalButton />
+                    <CreateEditModalButton />
+                    <CreateDeleteModalButton deleteFn={() => {
+                        console.log("deleted item");
+                    }} />
 
+                </div>
             </div>
-        </div>
+        </ThemeProvider>
     )
 }
 
