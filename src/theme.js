@@ -14,25 +14,50 @@ const theme = createTheme({
                 contained: {
                     backgroundColor: "#15AEF1",
                 },
-                outlined:{
-                    color:"#FFFFFF",
+                outlined: {
+                    color: "#FFFFFF",
                 },
-                outlinedSecondary:{
-                    color:"#FFFFFF",
-                    borderColor:"#FFFFFF",
+                outlinedSecondary: {
+                    color: "#FFFFFF",
+                    borderColor: "#FFFFFF",
+                    "&:hover": {
+                        borderColor: "#1976d2",
+                    }
+
                 }
+
             }
+
         },
         MuiTextField: {
             styleOverrides: {
                 root: {
                     background: "#FFFFFF",
-                    borderRadius:"4px",
-        
+                    borderRadius: "4px",
+
                 }
             }
         },
-        
+        MuiDataGrid: {
+            styleOverrides: {
+                root: {
+                    color: "white",
+                    "& .MuiDataGrid-row": {
+                        maxHeight: "none !important"
+                    }
+                },
+
+
+            }
+        },
+        MuiCheckbox: {
+            styleOverrides: {
+                root: {
+                    color: "white",
+                },
+
+            }
+        },
 
     },
     // palette: {

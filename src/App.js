@@ -4,6 +4,7 @@ import MyAppBar from './Components/Appbar';
 import "./CSS/App.css"
 
 import DataTable from './Components/Table';
+import Footer from './Components/footer';
 
 function App() {
     return (
@@ -11,6 +12,7 @@ function App() {
         <MyAppBar/>
         <ActionButtons/>
         <DataTable />
+        <Footer/>
         </>
     );
 

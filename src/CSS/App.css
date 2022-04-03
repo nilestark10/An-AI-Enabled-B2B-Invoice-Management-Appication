@@ -9,10 +9,29 @@
 h3,p{
    color: aliceblue;
 }
-.Logo{
-    height:100px;
-    width:100px;
-    padding:10px;
+.Logo1{
+    height:60px;
+    width:15%;
+    padding-left:30px;
+    padding-right: 380px;
+    padding-bottom:30px ;
+}
+.Logo2{
+    height:auto;
+    width:15%;
+    padding-top: 5px;
+    padding-left:10px;
+    padding-bottom:30px ;
+}
+
+.refreshicon{
+    border: 1px solid #42a5f5;
+    border-radius: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: #42a5f5;
 }
 
 .actionbutton{
@@ -25,7 +44,6 @@ h3,p{
 
 .createbtn{
     width:190px;
-    color: aqua;
 }
 
 /* .editbutton{
@@ -85,3 +103,32 @@ h3,p{
 }
 
 
+.table{
+    height: 425px; 
+    width: 100% ;
+}
+
+footer{
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    bottom: 0;
+    width: 99%;
+    height: 5rem;
+    background-color:rgb(45,67,81);
+    border-top:2px solid rgba(14, 13, 13, 0.47);
+}
+
+footer p{
+    padding-top: 15px;
+    color: white;
+    height: 20px;
+}
+
+footer a{
+    color: blue;
+}
+
+body{
+    background-color:rgb(40,60,75);
+}

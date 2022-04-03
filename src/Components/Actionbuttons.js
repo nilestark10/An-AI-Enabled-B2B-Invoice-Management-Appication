@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme.js';
 import '../CSS/App.css';
 import { CreateAddModalButton, CreateDeleteModalButton, CreateEditModalButton } from "./crudButtons";
+import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
 
 
 
@@ -17,10 +18,11 @@ function ActionButtons() {
             <div className="actionbutton" >
                 <div >
                     {/* <CreateBtn id="predict" text="PREDICT" onClick={() => { }} /> */}
-                    <Button className="createbtn" variant="contained">PREDICT</Button>
+                    <Button disableElevation className="createbtn" variant="contained">PREDICT</Button>
                     <CreateBtn text="ANALYTICS VIEW" onClick={() => { }} />
                     <CreateBtn text="ADVANCE SEARCH" onClick={() => { }} />
                 </div>
+                <RefreshOutlinedIcon className="refreshicon"/>
                 <SearchFields />
                 <div>
                     <CreateAddModalButton />

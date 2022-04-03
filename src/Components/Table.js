@@ -1,49 +1,50 @@
-import * as React from 'react';
+import React,{useState,useEffect} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "../theme.js"
+import getData from './servlet/data.js';
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
-];
-
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  { field: 'sl_no', headerName: 'ID', width: 70 },
+  { field: 'business_code', headerName: 'Buisness Code', width: 130 },
+  { field: 'cust_number', headerName: 'Customer Number', width: 130 },
+  { field: 'clear_date', headerName: 'Clear Date', width: 110 },
+  { field: 'buisness_year', headerName: 'Buisness Year', width: 110 },
+  { field: 'doc_id', headerName: 'Document ID', width: 110 },
+  { field: 'posting_date', headerName: 'Posting Date', width: 110 },
+  { field: 'document_create_date', headerName: 'Document Create Date', width: 130 },
+  { field: 'due_in_date', headerName: 'Due Date', width: 110 },
+  { field: 'invoice_currency', headerName: 'Invoice Currency', width: 110 },
+  { field: 'document_type', headerName: 'Document Type', width: 110 },
+  { field: 'posting_id', headerName: 'Posting ID', width: 110 },
+  { field: 'total_open_amount', headerName: 'Total Open Amount', width: 110 },
+  { field: 'baseline_create_date', headerName: 'Baseline Create Date', width: 110 },
+  { field: 'cust_payment_terms', headerName: 'Customer Payment Terms', width: 110 },
+  { field: 'invoice_id', headerName: 'Invoice ID', width: 110 },
 ];
 
 export default function DataTable() {
+
+  const [data,setData] = useState([]);
+
+  useEffect(async () => {
+    setData(await getData())
+
+  }, []);
+
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className='table'>
+        <DataGrid 
+          rows={data}
+          columns={columns}
+          getRowId={(data) => data.sl_no}
+          pageSize={10}
+          checkboxSelection
+          rowHeight={30}
+        />
+      </div>
+    </ThemeProvider>
   );
 }
+

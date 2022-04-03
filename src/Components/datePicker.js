@@ -15,7 +15,7 @@ export default function BasicDatePicker(props) {
         onChange={(newValue) => {
           setValue(newValue);
         }}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => <TextField variant='filled'{...params} />}
       />
     </LocalizationProvider>
   );
