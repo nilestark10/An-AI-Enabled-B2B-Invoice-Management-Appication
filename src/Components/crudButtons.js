@@ -18,29 +18,8 @@ import "../CSS/App.css";
 //     p: 4,
 // };
 
-export function CreateAddModalButton() {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    return (<>
-        <Button className="createbtn" variant="outlined" onClick={handleOpen}>ADD</Button>
-        <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description">
-            <Box className="addbutton">
-                <h3>Add</h3>
-                {/* need to be styled */}
-                <AddButton />
-                <div className="btn">
-                    <Button className="add" variant="outlined" color="secondary" onClick={handleClose}>ADD</Button>
-                    <Button className="add" variant="outlined" color="secondary" onClick={handleClose}>CANCEL</Button>
-                </div>
-            </Box>
-        </Modal>
-    </>);
-}
+
+
 
 export function CreateEditModalButton() {
     const [open, setOpen] = React.useState(false);

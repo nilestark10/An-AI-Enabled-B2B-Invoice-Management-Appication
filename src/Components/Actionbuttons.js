@@ -4,8 +4,9 @@ import SearchFields from './Searchfield';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme.js';
 import '../CSS/App.css';
-import { CreateAddModalButton, CreateDeleteModalButton, CreateEditModalButton } from "./crudButtons";
+import {CreateDeleteModalButton, CreateEditModalButton } from "./crudButtons";
 import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
+import CreateAddModalButton from "./addbutton";
 
 
 
@@ -25,7 +26,7 @@ function ActionButtons() {
                 <RefreshOutlinedIcon className="refreshicon"/>
                 <SearchFields />
                 <div>
-                    <CreateAddModalButton />
+                    <CreateAddModalButton/>
                     <CreateEditModalButton />
                     <CreateDeleteModalButton deleteFn={() => {
                         console.log("deleted item");

@@ -2,10 +2,10 @@ import React,{useState,useEffect} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../theme.js"
-import getData from './servlet/data.js';
+import { getData , addData } from './servlet/data.js';
 
 const columns = [
-  { field: 'sl_no', headerName: 'ID', width: 70 },
+  { field: 'sl_no', headerName: 'Sl no', width: 70 },
   { field: 'business_code', headerName: 'Buisness Code', width: 130 },
   { field: 'cust_number', headerName: 'Customer Number', width: 130 },
   { field: 'clear_date', headerName: 'Clear Date', width: 110 },
