@@ -4,7 +4,7 @@ import SearchFields from './Searchfield';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme.js';
 import '../CSS/App.css';
-import {CreateDeleteModalButton, CreateEditModalButton } from "./crudButtons";
+import { CreateDeleteModalButton, CreateEditModalButton } from "./crudButtons";
 import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
 import CreateAddModalButton from "./addbutton";
 
@@ -13,7 +13,7 @@ import CreateAddModalButton from "./addbutton";
 function CreateBtn({ text, onClick }) {
     return (<Button className="createbtn" variant="outlined" onClick={onClick}>{text}</Button>);
 }
-function ActionButtons() {
+function ActionButtons(props) {
     return (
         <ThemeProvider theme={theme}>
             <div className="actionbutton" >
@@ -23,10 +23,12 @@ function ActionButtons() {
                     <CreateBtn text="ANALYTICS VIEW" onClick={() => { }} />
                     <CreateBtn text="ADVANCE SEARCH" onClick={() => { }} />
                 </div>
-                <RefreshOutlinedIcon className="refreshicon"/>
+                <RefreshOutlinedIcon className="refreshicon" />
                 <SearchFields />
                 <div>
-                    <CreateAddModalButton/>
+                    <CreateAddModalButton
+                        callback= {props.modalSuccessFn}
+                    />
                     <CreateEditModalButton />
                     <CreateDeleteModalButton deleteFn={() => {
                         console.log("deleted item");

@@ -23,20 +23,15 @@ const columns = [
   { field: 'invoice_id', headerName: 'Invoice ID', width: 110 },
 ];
 
-export default function DataTable() {
+export default function DataTable(props) {
 
-  const [data,setData] = useState([]);
 
-  useEffect(async () => {
-    setData(await getData())
-
-  }, []);
 
   return (
     <ThemeProvider theme={theme}>
       <div className='table'>
         <DataGrid 
-          rows={data}
+          rows={props.data}
           columns={columns}
           getRowId={(data) => data.sl_no}
           pageSize={10}
