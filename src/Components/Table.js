@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridFilterInputValue } from '@mui/x-data-grid';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../theme.js"
 import { getData , addData } from './servlet/data.js';
@@ -25,18 +25,30 @@ const columns = [
 
 export default function DataTable(props) {
 
-
+  // let searchedItem = props.item;
+  // //console.log("search"+ searchedItem);
+  // const[data,setData]=useState(props.searchQuery?props.data.filter(e=>e.cust_number==props.searchQuery):props.data)
+  // let oneQueryData = (props.doc_id?props.data.filter(e=>String(e.doc_id).startsWith(props.doc_id)):props.data);
+  // let twoQueryData = (props.invoice_id?oneQueryData.filter(e=>String(e.invoice_id).startsWith(props.invoice_id)):oneQueryData);
+  // let threeQueryData = (props.cust_number?twoQueryData.filter(e=>String(e.cust_number).startsWith(props.cust_number)):twoQueryData);
+  // let fourQueryData = (props.buisness_year?threeQueryData.filter(e=>String(e.buisness_year).startsWith(props.buisness_year)):threeQueryData);
+  // console.log("in table",props.seacrhData);
+  let tableData = (props.searchItem?props.data.filter(e=>String(e.cust_number).startsWith(props.searchItem)):props.data);
 
   return (
     <ThemeProvider theme={theme}>
       <div className='table'>
         <DataGrid 
-          rows={props.data}
+          rows={tableData}
           columns={columns}
           getRowId={(data) => data.sl_no}
-          pageSize={10}
+          //pageSize={10}
           checkboxSelection
           rowHeight={30}
+          onSelectionModelChange={(id)=>{props.onChecked(id)
+          //console.log(id)
+        }}
+          
         />
       </div>
     </ThemeProvider>

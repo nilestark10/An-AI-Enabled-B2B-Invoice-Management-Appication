@@ -62,7 +62,7 @@ function MainTable() {
     }
   }, []);
 
-  console.log(tableData);
+  //console.log(tableData);
 
   return (
     <div style={{ height: 450, width: '100%', background: "#29414f", color: "white", }}>

@@ -24,9 +24,9 @@ const theme = createTheme({
                         borderColor: "#1976d2",
                     }
 
-                }
+                },
 
-            }
+            },
 
         },
         MuiTextField: {
