@@ -28,7 +28,7 @@ export default function CreateAdvanceSearchModal(props) {
     const submitHandler = async (e) => {
         e.preventDefault();
        let response = await AdvSearchData(row);
-        console.log("in adv ", response.data.users);
+        console.log("in adv 2", response.data);
         props.searchData(response.data.users);
         handleClose();
       

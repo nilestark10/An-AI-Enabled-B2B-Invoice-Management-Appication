@@ -1,5 +1,5 @@
 import React from "react";
-import Button from '@mui/material/Button';
+
 import SearchFields from './Searchfield';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme.js';
@@ -12,6 +12,7 @@ import CreateAdvSearchModal from "./AdvSearch";
 import CreateAnalyticModal from "./AnalyticView";
 import IconButton from '@mui/material/IconButton';
 import CreateAdvanceSearchModal from "./AdvanceSearch";
+import PredictButton from "./PredictButton";
 
 function handleRef() {
 
@@ -25,8 +26,7 @@ function ActionButtons(props) {
         <ThemeProvider theme={theme}>
             <div className="actionbutton" >
                 <div >
-                    {/* <CreateBtn id="predict" text="PREDICT" onClick={() => { }} /> */}
-                    <Button disableElevation className="createbtn" variant="contained">PREDICT</Button>
+                    <PredictButton predictList={props.checkedlist}/>
                     <CreateAnalyticModal />
                     {/* <CreateAdvSearchModal onClickSearchFn ={(e)=>{props.onClickSearchFn(e)}} /> */}
                     <CreateAdvanceSearchModal searchData ={(e)=>{props.searchData(e)}} /> 

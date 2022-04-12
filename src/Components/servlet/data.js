@@ -30,7 +30,7 @@ export const editData = async (data , checkedList) => {
         let url="http://localhost:8080/HRCmyapp1/EditData?"+`invoice_currency=${data.invoice_currency}&cust_payment_terms=${data.cust_payment_terms}&sl_no=${checkedList}`;
         //console.log(url)
     let response = await axios.get(url);
-    //console.log(response.status)
+    // console.log(response.data);
     return response;  
 }
 
@@ -59,3 +59,33 @@ export const AdvSearchData = async(data) => {
     let response = await axios.get(url);
     return response;
 }
+
+export const slNoGetdata = async(checkedList) => {
+    let url= "http://localhost:8080/HRCmyapp1/GetDataSlNo?"+`sl_no=${checkedList}`;
+    console.log("in sl",url);
+    let response = await axios.get(url);
+    return response;
+}
+
+export const Predict = async(data , sl_no) => {
+    let url="http://127.0.0.1:5000/get_prediction";
+    data =parseInt(data);
+    const dp = {"data":[data]}
+    console.log(dp);
+    let response = await axios.post(url,dp);
+    console.log("in data.js",response.data[0].aging_bucket);
+    var aging_bucket="NAN";
+    if(response.data.length==1){
+        aging_bucket=response.data[0].aging_bucket;
+        let link="http://localhost:8080/HRCmyapp1/UpdateAgingBucket?"+`aging_bucket=${aging_bucket}&sl_no=${sl_no}`;
+        var update = await axios.get(link);
+    }
+    else{
+        var aging_bucket=null;
+        let link="http://localhost:8080/HRCmyapp1/UpdateAgingBucket?"+`aging_bucket=${aging_bucket}&sl_no=${sl_no}`;
+        var update = await axios.get(link);
+    }
+    
+    return update;  
+}
+

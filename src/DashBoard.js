@@ -7,19 +7,20 @@ import "./CSS/App.css"
 import DataTable from './Components/Table';
 import Footer from './Components/footer';
 import { getData } from './Components/servlet/data';
-import { propsToClassKey } from '@mui/styles';
 
 function DashBoard() {
 
     const [data, setData,userefData] = useState([]);
     const [checkedRow, setCheckedRow, useref] = useState(0);
     const [selectRows, setSlectRows] = useState([]);
-    const [searchItem,setSearchItem] = useState(null);
+    const [searchItem,setSearchItem] = React.useState(null);
     const [searchDocId , setSearchDocId] = React.useState(null);
     const [searchInvoiceId , setSearchInvoiceId] = React.useState(null);
     const [searchCustNum , setSearchCustNum] = React.useState(null);
     const [searchBusinessYear , setSearchBusinessYear ] = React.useState(null);
     
+    let tableData = {data};
+    // console.log(tableData);
  
     useEffect(async () => {
         if(userefData.current.length==0)
@@ -60,11 +61,11 @@ function DashBoard() {
                 }} />
             <DataTable data={userefData.current}  searchItem={searchItem} doc_id={searchDocId} invoice_id={searchInvoiceId} cust_number={searchCustNum} buisness_year={searchBusinessYear} onChecked={(e) => {
                 if (e) {
-                    // //console.log("before set", e);
+                    // console.log("before set", e);
                     selectedList = [e];
                     // //console.log("selected list" + selectedList)
                     setCheckedRow(e);
-                    // //console.log("after set", useref.current);
+                    // console.log("after set", checkedRow);
                     // var s =data.filter( e => e.id === selectRows[0])
                     // //console.log("selected row",s); 
                     // setName(s[0].name) 

@@ -21,6 +21,7 @@ const columns = [
   { field: 'baseline_create_date', headerName: 'Baseline Create Date', width: 110 },
   { field: 'cust_payment_terms', headerName: 'Customer Payment Terms', width: 110 },
   { field: 'invoice_id', headerName: 'Invoice ID', width: 110 },
+  { field: 'aging_bucket', headerName: 'Aging Bucket', width: 110 },
 ];
 
 export default function DataTable(props) {
