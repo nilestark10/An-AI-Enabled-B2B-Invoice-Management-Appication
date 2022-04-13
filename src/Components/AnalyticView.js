@@ -30,6 +30,7 @@ export default function CreateAnalyticModal() {
         const { name, value } = e;
         setRow({ ...row, [name]: value });
     }
+    
 
     return (<>
         <Button className="createbtn" variant="outlined" onClick={handleOpen}>ANALYTICS VIEW</Button>

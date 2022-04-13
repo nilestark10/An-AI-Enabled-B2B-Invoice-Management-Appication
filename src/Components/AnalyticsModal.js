@@ -5,43 +5,69 @@ import Modal from "@mui/material/Modal";
 import { UserData } from "./Data";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
-import { Analytics } from "./servlet/data";
+import { BarChartData,PieChartData } from "./servlet/data";
 
 export default function AnalyticsModal(props) {
 
   // console.log("in modal",props.data);
-  const[row , setRow] = React.useState([]);
-  console.log("in row",row);
+  const[barRow , setBarRow] = React.useState([]);
+  console.log("in row",barRow);
+  const[pieRow , setPieRow] = React.useState([]);
+  console.log("in row.1",pieRow);
+  
   // console.
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const userData = ({
-    labels: row.map((data) => data.business_name),
+  const handleClose = () => {setOpen(false)};
+  const barData=({
+    labels: barRow.map((data) => data.business_name),
     datasets: [
       {
         label: "No of customers",
-        data: row.map((data) => data.cust_count),
+        data: barRow.map((data) => data.cust_count),
         backgroundColor: ["#ffb0c1"],
         borderColor: "black",
         borderWidth: 2,
       },
       {
         label: "Total open amount",
-        data: row.map((data) => data.total_amount),
+        data: barRow.map((data) => data.total_amount),
         backgroundColor: ["#99d0f5"],
         borderColor: "black",
         borderWidth: 2,
       },
     ],
   });
+
+  const pieData=({
+    labels: pieRow.map((data) => data.invoice_currency),
+    datasets: [
+      {
+        label: "Invoice Currecy",
+        data: pieRow.map((data) => data.count_currency),
+        backgroundColor: ["#99d0f5","#ffb0c1"],
+        borderColor: "black",
+        borderWidth: 2,
+      },
+      // {
+      //   label: "Total open amount",
+      //   data: row.map((data) => data.total_amount),
+      //   backgroundColor: ["#99d0f5"],
+      //   borderColor: "black",
+      //   borderWidth: 2,
+      // },
+    ],
+  });
+
   const submitHandler = async(e) => {
     e.preventDefault();
     console.log("in submit1",props.data);
-    let response = await Analytics(props.data);
-    console.log("in submit2",response.data.users);
-    setRow(response.data.users);
-
+    let barResponse = await BarChartData(props.data);
+    let pieResponse = await PieChartData(props.data);
+    console.log("in submit2.0",barResponse.data.users);
+    console.log("in submit2.1",pieResponse);
+    setBarRow(barResponse.data.users);
+    setPieRow(pieResponse.data.users);
     handleOpen();
 
   }
@@ -67,11 +93,11 @@ export default function AnalyticsModal(props) {
         <Box className="chartmodal">
           <div classname="stats" >
             <div style={{ width: 500 }}>
-              <BarChart chartData={userData} />
+              <BarChart chartData={barData} />
             </div>
-            {/* <div style={{ width: 500 }}>
-              <PieChart chartData={userData} />
-            </div> */}
+            <div style={{ width: 500 }}>
+              <PieChart chartData={pieData} />
+            </div>
           </div>
 
           <div className="btn">
