@@ -22,3 +22,4 @@ export default function PredictButton(props) {
         <Button disableElevation className="createbtn" variant="contained" onClick={predictHandler}>PREDICT</Button>
     );
 }
+

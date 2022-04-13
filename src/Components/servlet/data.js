@@ -60,6 +60,17 @@ export const AdvSearchData = async(data) => {
     return response;
 }
 
+export const Analytics = async(data) =>{
+    console.log("in data1",data);
+    let url="http://localhost:8080/HRCmyapp1/AnalyticsView?"+`&clear_date1=${data.clear_date1}&clear_date2=${data.clear_date2}&due_in_date1=${data.due_in_date1}&due_in_date2=${data.due_in_date2}&baseline_create_date1=${data.baseline_create_date1}&baseline_create_date2=${data.baseline_create_date2}&invoice_currency=${data.invoice_currency}`;
+    console.log("in data url",url);
+    let response = await axios.get(url);
+    console.log("in data response",response)
+    return response;
+
+}
+
+
 export const slNoGetdata = async(checkedList) => {
     let url= "http://localhost:8080/HRCmyapp1/GetDataSlNo?"+`sl_no=${checkedList}`;
     console.log("in sl",url);
@@ -73,19 +84,23 @@ export const Predict = async(data , sl_no) => {
     const dp = {"data":[data]}
     console.log(dp);
     let response = await axios.post(url,dp);
-    console.log("in data.js",response.data[0].aging_bucket);
-    var aging_bucket="NAN";
-    if(response.data.length==1){
-        aging_bucket=response.data[0].aging_bucket;
-        let link="http://localhost:8080/HRCmyapp1/UpdateAgingBucket?"+`aging_bucket=${aging_bucket}&sl_no=${sl_no}`;
-        var update = await axios.get(link);
-    }
-    else{
-        var aging_bucket=null;
-        let link="http://localhost:8080/HRCmyapp1/UpdateAgingBucket?"+`aging_bucket=${aging_bucket}&sl_no=${sl_no}`;
-        var update = await axios.get(link);
-    }
+    // console.log("in data.js",response.data);
+    // getting aging bucket from ml model;
+    var aging_bucket=response.data[0].aging_bucket;
+    let link="http://localhost:8080/HRCmyapp1/UpdateAgingBucket?"+`aging_bucket=${aging_bucket}&sl_no=${sl_no}`;
+    var update = await axios.get(link);
+    // var aging_bucket="NAN";
+    // if(response.data.length==1){
+    //     
+        
+    // }
+    // else{
+    //     var aging_bucket=null;
+    //     let link="http://localhost:8080/HRCmyapp1/UpdateAgingBucket?"+`aging_bucket=${aging_bucket}&sl_no=${sl_no}`;
+    //     var update = await axios.get(link);
+    // }
     
     return update;  
 }
+
 

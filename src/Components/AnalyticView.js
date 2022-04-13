@@ -4,16 +4,19 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import BasicDatePicker from './datePicker';
 import { Typography, TextField } from "@mui/material";
+import AnalyticsModal from "./AnalyticsModal";
 
 export default function CreateAnalyticModal() {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        setRow({clear_date1: null, clear_date2: null, due_in_date1: null, due_in_date2: null, invoice_currency: null, baseline_create_date1: null,baseline_create_date2: null})
+        setOpen(false)
+    };
 
     const [row, setRow] = React.useState({
-        business_code: '', cust_number: '', clear_date: '', buisness_year: '', doc_id: '', posting_date: '', document_create_date: '', due_in_date: '', invoice_currency: '',
-        document_type: '', posting_id: '', total_open_amount: '', baseline_create_date: '', cust_payment_terms: '', invoice_id: ''
-    })
+         clear_date1: null, clear_date2: null, due_in_date1: null, due_in_date2: null, invoice_currency: null, baseline_create_date1: null,baseline_create_date2: null
+        })
 
     
     const changeHandler = async (e) => {
@@ -23,7 +26,7 @@ export default function CreateAnalyticModal() {
     }
 
     const dateHandler = async (e) => {
-        //console.log(e);
+        console.log(e);
         const { name, value } = e;
         setRow({ ...row, [name]: value });
     }
@@ -49,24 +52,23 @@ export default function CreateAnalyticModal() {
                         <div className="analyticsview">
                             <div className="analyticdiv">
                                 <Typography>Clear Date</Typography>
-                                <BasicDatePicker variant="filled" value={row.clear_date} onChanged={dateHandler} />
-                                <BasicDatePicker variant="filled" value={row.clear_date} onChanged={dateHandler} />
+                                <BasicDatePicker variant="filled" name= "clear_date1" value={row.clear_date1} onChanged={dateHandler} />
+                                <BasicDatePicker variant="filled" name= "clear_date2" value={row.clear_date2} onChanged={dateHandler} />
                             </div>
                             <div className="analyticdiv">
                                 <Typography>Due Date</Typography>
-                                <BasicDatePicker variant="filled" value={row.clear_date} onChanged={dateHandler} />
-                                <BasicDatePicker variant="filled" value={row.clear_date} onChanged={dateHandler} />
+                                <BasicDatePicker variant="filled" name= "due_in_date1" value={row.due_in_date1} onChanged={dateHandler} />
+                                <BasicDatePicker variant="filled" name= "due_in_date2" value={row.due_in_date2} onChanged={dateHandler} />
                             </div>
                         </div>
                         <div className="analyticsview">
                             <div className="analyticdiv">
                                 <Typography>Baseline Create Date</Typography>
-                                <BasicDatePicker variant="filled" value={row.clear_date} onChanged={dateHandler} />
-                                <BasicDatePicker variant="filled" value={row.clear_date} onChanged={dateHandler} />
+                                <BasicDatePicker variant="filled" name= "baseline_create_date1" value={row. baseline_create_date1} onChanged={dateHandler} />
+                                <BasicDatePicker variant="filled" name= "baseline_create_date2" value={row. baseline_create_date2} onChanged={dateHandler} />
                             </div>
 
                             <div>
-
                                 <div className="analyticdiv">
                                     <Typography>Invoice Currency</Typography>
                                     <TextField label="Invoice Currency" variant="filled" name='invoice_currency' value={row.invoice_currency} onChange={changeHandler} />
@@ -78,8 +80,10 @@ export default function CreateAnalyticModal() {
 
 
                 </Box>
-                <div className="btn">
-                    <Button className="edit" variant="outlined" color="secondary" onClick={handleClose}>SUBMIT</Button>
+                
+                    {/* <Button className="edit" variant="outlined" color="secondary" onClick={handleClose}>SUBMIT</Button> */}
+                    <AnalyticsModal data={row}/>
+                    <div className="btn">
                     <Button className="edit" variant="outlined" color="secondary" onClick={handleClose}>CANCEL</Button>
                 </div>
             </Box>
