@@ -2,24 +2,23 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { UserData } from "./Data";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
-import { BarChartData,PieChartData } from "./servlet/data";
+import { BarChartData, PieChartData } from "./servlet/data";
 
 export default function AnalyticsModal(props) {
 
   // console.log("in modal",props.data);
-  const[barRow , setBarRow] = React.useState([]);
-  console.log("in row",barRow);
-  const[pieRow , setPieRow] = React.useState([]);
-  console.log("in row.1",pieRow);
-  
+  const [barRow, setBarRow] = React.useState([]);
+  console.log("in row", barRow);
+  const [pieRow, setPieRow] = React.useState([]);
+  console.log("in row.1", pieRow);
+
   // console.
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => {setOpen(false)};
-  const barData=({
+  const handleClose = () => { setOpen(false) };
+  const barData = ({
     labels: barRow.map((data) => data.business_name),
     datasets: [
       {
@@ -39,33 +38,26 @@ export default function AnalyticsModal(props) {
     ],
   });
 
-  const pieData=({
+  const pieData = ({
     labels: pieRow.map((data) => data.invoice_currency),
     datasets: [
       {
         label: "Invoice Currecy",
         data: pieRow.map((data) => data.count_currency),
-        backgroundColor: ["#99d0f5","#ffb0c1"],
+        backgroundColor: ["#ffb0c1", "#99d0f5"],
         borderColor: "black",
         borderWidth: 2,
       },
-      // {
-      //   label: "Total open amount",
-      //   data: row.map((data) => data.total_amount),
-      //   backgroundColor: ["#99d0f5"],
-      //   borderColor: "black",
-      //   borderWidth: 2,
-      // },
     ],
   });
 
-  const submitHandler = async(e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("in submit1",props.data);
+    console.log("in submit1", props.data);
     let barResponse = await BarChartData(props.data);
     let pieResponse = await PieChartData(props.data);
-    console.log("in submit2.0",barResponse.data.users);
-    console.log("in submit2.1",pieResponse);
+    console.log("in submit2.0", barResponse.data.users);
+    console.log("in submit2.1", pieResponse);
     setBarRow(barResponse.data.users);
     setPieRow(pieResponse.data.users);
     handleOpen();
@@ -74,16 +66,9 @@ export default function AnalyticsModal(props) {
 
 
   return (
-    <div>
-        <Button
-          className="edit"
-          variant="outlined"
-          color="primary"
-          onClick={submitHandler}
-        >
-          SUBMIT
-        </Button>
-      
+    <>
+      <Button className="edit" variant="outlined" color="secondary" onClick={submitHandler}>SUBMIT</Button>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -91,22 +76,23 @@ export default function AnalyticsModal(props) {
         aria-describedby="modal-modal-description"
       >
         <Box className="chartmodal">
-          <div classname="stats" >
-            <div style={{ width: 500 }}>
+          <div classname="charts" >
+
+            <div className="barchart">
               <BarChart chartData={barData} />
             </div>
-            <div style={{ width: 500 }}>
+            <div className="piechart">
               <PieChart chartData={pieData} />
             </div>
-          </div>
 
-          <div className="btn">
-            <Button className="add" variant="outlined" onClick={handleClose}>
+          </div>
+          <div className="close" >
+            <Button variant="outlined" style={{ color: "#000000",width:"70%"}} onClick={handleClose}>
               CLOSE
             </Button>
           </div>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }

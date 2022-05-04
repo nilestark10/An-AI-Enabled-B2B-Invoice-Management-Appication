@@ -13,7 +13,7 @@ export default function CreateDeleteModalButton(props) {
 
 
     let checkedList = props.deleteList;
-    //console.log("at delete " + checkedList);
+    console.log("at delete " + checkedList);
 
 
 
@@ -39,7 +39,7 @@ export default function CreateDeleteModalButton(props) {
                     <h3>Delete Records?</h3>
                     <p>Are you sure you want to delete these record[s]?</p>
                 </div>
-                <div className="btn">
+                <div className="deletebtn">
                     <Button className="edit" variant="outlined" color="secondary" onClick={deleteHandler}>DELETE</Button>
                     <Button className="edit" variant="outlined" color="secondary" onClick={handleClose}>CANCEL</Button>
                 </div>

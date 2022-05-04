@@ -6,28 +6,37 @@ import "./CSS/App.css"
 
 import DataTable from './Components/Table';
 import Footer from './Components/footer';
-import { getData } from './Components/servlet/data';
+import { FetchData, getData, loadData } from './Components/servlet/data';
 
 function DashBoard() {
 
     const [data, setData,userefData] = useState([]);
-    const [checkedRow, setCheckedRow, useref] = useState(0);
+    const [checkedRow, setCheckedRow, useref] = useState([]);
     const [selectRows, setSlectRows] = useState([]);
     const [searchItem,setSearchItem] = React.useState(null);
-    const [searchDocId , setSearchDocId] = React.useState(null);
-    const [searchInvoiceId , setSearchInvoiceId] = React.useState(null);
-    const [searchCustNum , setSearchCustNum] = React.useState(null);
-    const [searchBusinessYear , setSearchBusinessYear ] = React.useState(null);
+    const [pageSize, setPageSize,pageSizeref] = useState(10);
+    const [page, setPage,pageref] = useState(1);
     
     let tableData = {data};
-    // console.log(tableData);
+    console.log(tableData);
  
-    useEffect(async () => {
-        if(userefData.current.length==0)
-        setData(await getData())
+    // useEffect(async () => {
+    //     if(userefData.current.length==0)
+    //     setData(await getData())
 
-    }, []);
-    
+    // }, []);
+
+    useEffect(async() =>{
+        if(userefData.current.length==0)
+        setData(await FetchData(pageref.current,pageSizeref.current))
+    }); 
+     
+    const NextPage = async () =>{
+        // console.log("page",page,pageSize);
+        console.log("page1",pageref.current,pageSizeref.current);
+        setData(await FetchData(pageref.current,pageSizeref.current));
+         
+    }
     
 
     var selectedList = 0;
@@ -47,35 +56,29 @@ function DashBoard() {
                 
             }}  
             searchItem={(e) => { setSearchItem(e)}}
-            // searchDocId={(e) => { setSearchDocId(e)}}
-            // searchInvoiceId={(e) => { setSearchInvoiceId(e)}}
-            // searchCustNum={(e) => { setSearchCustNum(e)}}
-            // searchBusinessYear={(e) => { setSearchBusinessYear(e)}}
 
                 checkedlist={useref.current} modalSuccessFn={async (e) => {
                     if (e) {
-                        setData(await getData());
+                        setData(await FetchData(pageref.current,pageSizeref.current));
                         // //console.log("sitem" +searchItem);
                     }
 
                 }} />
-            <DataTable data={userefData.current}  searchItem={searchItem} doc_id={searchDocId} invoice_id={searchInvoiceId} cust_number={searchCustNum} buisness_year={searchBusinessYear} onChecked={(e) => {
+            <DataTable data={userefData.current} page={pageref.current} pageSize={pageSizeref.current} searchItem={searchItem}   
+            onChecked={(e) => {
                 if (e) {
                     // console.log("before set", e);
                     selectedList = [e];
                     // //console.log("selected list" + selectedList)
                     setCheckedRow(e);
-                    // console.log("after set", checkedRow);
-                    // var s =data.filter( e => e.id === selectRows[0])
-                    // //console.log("selected row",s); 
-                    // setName(s[0].name) 
-                    // setEmail(s[0].email) 
 
-                }
-            }}
-
-
-
+                }}}
+                loadPage={(page,pagesize)=>{
+                   console.log("in props",page,pagesize);
+                   setPage(page);
+                   setPageSize(pagesize);
+                   NextPage(page,pagesize);
+                }}
             />
             <Footer />
         </>
@@ -86,10 +89,3 @@ function DashBoard() {
 
 export default DashBoard
 
-// onClickSearchFn = {(e)=>{
-    
-//     setSearchDocId(e.row.doc_id==""?null:e.row.doc_id)
-//     setSearchInvoiceId(e.row.invoice_id==""?null:e.row.invoice_id)
-//     setSearchCustNum(e.row.cust_number==""?null:e.row.cust_number)
-//     setSearchBusinessYear(e.row.buisness_year==""?null:e.row.buisness_year)
-//  }}  

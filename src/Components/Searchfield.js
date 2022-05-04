@@ -2,7 +2,6 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 
 import '../CSS/App.css';
-// import { getData } from './servlet/data';
 
 export default function BasicTextFields(props) {
 

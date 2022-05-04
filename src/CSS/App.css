@@ -3,35 +3,31 @@
     width: 190px;  
 }
 
-/* body{
-    color:rgb(40,60,75);
-} */
+body{
+    background-color:rgb(40,60,75);
+    margin: 0px;
+}
 h3,p{
    color: aliceblue;
 }
 .Logo1{
-    height:60px;
-    width:15%;
-    padding-left:30px;
-    padding-right: 380px;
-    padding-bottom:30px ;
+    height:3.75rem;
+    width:15rem;
+    padding-left:2rem;
+    padding-right: 24rem;
+    padding-bottom: 2rem;
 }
 .Logo2{
-    height:auto;
-    width:15%;
-    padding-top: 5px;
-    padding-left:10px;
-    padding-bottom:30px ;
+    height:3.75rem;
+    width:15rem;
+    padding-top: 0.3rem;
+    padding-left: 10px;
+    padding-bottom: 2rem;
 }
 
-.refreshicon{
-    border: 1px solid #42a5f5;
-    border-radius: 3px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 25px;
-    padding-right: 25px;
-    color: #42a5f5;
+.invoicetext{
+    padding-left:2rem ;
+    padding-bottom: 0.1rem;
 }
 
 .actionbutton{
@@ -43,13 +39,13 @@ h3,p{
 }
 
 .createbtn{
-    width:190px;
+    width: 190px;
 }
 
-/* .editbutton{
-    display: flex;
-    justify-content:space-between;
-} */
+.predictbtn{
+    width: 190px;
+    background-color: #1976d2 !important;
+}
 .analyticview{
     position: absolute;
     top: 50%;
@@ -80,6 +76,16 @@ h3,p{
     padding-bottom: 5px;
 }
 
+.refreshicon{
+    border: 1px solid #42a5f5;
+    border-radius: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: #42a5f5;
+}
+
 .addbutton{
     position: absolute;
     top: 50%;
@@ -93,7 +99,7 @@ h3,p{
 .btn{
     display: flex;
     justify-content: space-evenly;
-    padding-top: 15px
+    padding-top: 15px;
 }
 .add{
     width: 49%;
@@ -106,6 +112,12 @@ h3,p{
     transform: translate(-50%, -50%);
     background-color: rgb(45,67,81);
     
+}
+.editbtn{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 15px;
+    padding : 10px;
 }
 .txt{
     padding: 20px;
@@ -128,6 +140,12 @@ h3,p{
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(45,67,81);
+}
+.deletebtn{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 15px;
+    padding : 10px;
 }
 
 
@@ -157,10 +175,7 @@ footer a{
     color: blue;
 }
 
-body{
-    background-color:rgb(40,60,75);
-    margin: 0px;
-}
+
 
 button:disabled,
 button[disabled]{
@@ -169,11 +184,30 @@ button[disabled]{
 
 .chartmodal{
     position: absolute;
-    /* top: 50%;
-    left: 50%; */
-    /* transform: translate(-50%, -50%); */
+    display:flex;
+    flex-flow: column;
+    justify-content: space-evenly;
     height: 100%;
     width: 100%;
     background-color: white;
     padding: 20px;
+}
+.charts{
+    display:flex ;
+    /* justify-content: space-evenly; */
+    width: 100%;
+    flex-flow: row;
+
+}
+.barchart{
+    width: 600px;
+
+}
+.piechart{
+    width:400px
+}
+.close{
+    display: flex;
+    justify-content: center;
+    
 }

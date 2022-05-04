@@ -38,14 +38,26 @@ const theme = createTheme({
                 }
             }
         },
+        MuiTablePagination: {
+            styleOverrides: {
+                root: {
+                    color: "white",
+                },
+            },
+        },
         MuiDataGrid: {
             styleOverrides: {
                 root: {
                     color: "white",
-                    "& .MuiDataGrid-row": {
-                        maxHeight: "none !important"
-                    }
+                    border: "0px",
                 },
+                columnSeparator: {
+                    visibility: "hidden",
+                },
+                row: {
+                    maxHeight: "none !important"
+                },
+
 
 
             }
@@ -60,10 +72,6 @@ const theme = createTheme({
         },
 
     },
-    // palette: {
-    //     mode: 'dark',
-    //   },
-
 });
 
 

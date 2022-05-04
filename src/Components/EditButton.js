@@ -63,7 +63,7 @@ export default function CreateEditModalButton(props) {
                         <TextField label="Customer Payment terms" name='cust_payment_terms' value={row.cust_payment_terms} variant="filled" onChange={changeHandler} />
                     </div>
                 </div>
-                <div className="btn">
+                <div className="editbtn">
                     <Button className="edit" variant="outlined" color="secondary" onClick={editHandler}>EDIT</Button>
                     <Button className="edit" variant="outlined" color="secondary" onClick={handleClose}>CANCEL</Button>
                 </div>

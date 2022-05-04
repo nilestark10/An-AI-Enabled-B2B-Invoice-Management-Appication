@@ -8,7 +8,6 @@ import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
 import CreateAddModalButton from "./addbutton";
 import CreateEditModalButton from "./EditButton";
 import CreateDeleteModalButton from "./DeleteButton.js";
-import CreateAdvSearchModal from "./AdvSearch";
 import CreateAnalyticModal from "./AnalyticView";
 import IconButton from '@mui/material/IconButton';
 import CreateAdvanceSearchModal from "./AdvanceSearch";
@@ -28,7 +27,6 @@ function ActionButtons(props) {
                 <div >
                     <PredictButton predictList={props.checkedlist}/>
                     <CreateAnalyticModal />
-                    {/* <CreateAdvSearchModal onClickSearchFn ={(e)=>{props.onClickSearchFn(e)}} /> */}
                     <CreateAdvanceSearchModal searchData ={(e)=>{props.searchData(e)}} /> 
                 </div>
 
@@ -47,5 +45,5 @@ function ActionButtons(props) {
 
 export default ActionButtons
 
-// docId={(e) => { props.searchDocId(e)}} InvoiceId={(e) => { props.searchInvoiceId(e)}} CustNum={(e) => { props.searchCustNum(e)}} BusinessYear={(e) => { props.searchBusinessYear(e)}}
+
 

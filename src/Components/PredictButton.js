@@ -17,9 +17,15 @@ export default function PredictButton(props) {
         };
 
     }
+    var checkedList = props.predictList;
+        var predict;
+        if(checkedList.length>=1){
+            predict=false;    
+        }
+        else{predict=true};
 
     return (
-        <Button disableElevation className="createbtn" variant="contained" onClick={predictHandler}>PREDICT</Button>
+        <Button disableElevation className="predictbtn" variant="contained" disabled={predict} onClick={predictHandler}>PREDICT</Button>
     );
 }
 

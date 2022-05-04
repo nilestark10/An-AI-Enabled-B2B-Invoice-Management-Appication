@@ -16,20 +16,20 @@ export default function CreateAnalyticModal() {
 
     const [row, setRow] = React.useState({
          clear_date1: null, clear_date2: null, due_in_date1: null, due_in_date2: null, invoice_currency: null, baseline_create_date1: null,baseline_create_date2: null
-        })
+        });
 
     
     const changeHandler = async (e) => {
-
+        console.log("in change",e.target);
         const { name, value } = e.target;
         setRow({ ...row, [name]: value });
-    }
+    };
 
     const dateHandler = async (e) => {
         console.log(e);
         const { name, value } = e;
         setRow({ ...row, [name]: value });
-    }
+    };
     
 
     return (<>
@@ -82,11 +82,11 @@ export default function CreateAnalyticModal() {
 
                 </Box>
                 
-                    {/* <Button className="edit" variant="outlined" color="secondary" onClick={handleClose}>SUBMIT</Button> */}
-                    <AnalyticsModal data={row}/>
+                    
                     <div className="btn">
+                    <AnalyticsModal data={row}/> 
                     <Button className="edit" variant="outlined" color="secondary" onClick={handleClose}>CANCEL</Button>
-                </div>
+                    </div>
             </Box>
         </Modal>
     </>);

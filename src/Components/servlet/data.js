@@ -18,6 +18,34 @@ export const addData = async (data) => {
 
 }
 
+// export const loadData = async(page_size) =>{
+//     console.log("page size",page_size);
+//     let url = "http://localhost:8080/HRCmyapp1/Fetch?"+`page=1&page_size=${page_size}`;
+//     console.log("in load",url);
+//     let response = await axios.get(url);
+//     console.log("in loaddata",response);
+//     let data = response.data.users;
+//     return data;
+// }
+
+export const FetchData = async(page,page_size)=>{
+    let url = "http://localhost:8080/HRCmyapp1/Fetch?"+`page=${page}&page_size=${page_size}`;
+    console.log(url);
+    let response = await axios.get(url);
+    console.log("in fetchdata",response);
+    let data = response.data.users;
+    return data;
+} 
+
+
+
+export const FetchCount = async() =>{
+    let url = "http://localhost:8080/HRCmyapp1/FetchCount";
+    let response = await axios.get(url);
+    console.log("count",response);
+    return response;
+}
+
 // let str = ('business_code=' + data.business_code + '&cust_number=' + data.cust_number + '&clear_date=' + data.clear_date
 //         + '&buisness_year=' + data.buisness_year + '&doc_id=' + data.doc_id + '&posting_date=' + data.posting_date + '&document_create_date=' + data.document_create_date
 //         + '&due_in_date=' + data.due_in_date + '&invoice_currency=' + data.invoice_currency + '&document_type=' + data.document_type

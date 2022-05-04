@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import useState from "react-usestateref";
 import { DataGrid} from '@mui/x-data-grid';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../theme.js"
-import { getData , addData } from './servlet/data.js';
+import {FetchCount} from './servlet/data.js';
 
 const columns = [
   { field: 'sl_no', headerName: 'Sl no', width: 70 },
@@ -26,14 +27,14 @@ const columns = [
 
 export default function DataTable(props) {
 
-  // let searchedItem = props.item;
-  // //console.log("search"+ searchedItem);
-  // const[data,setData]=useState(props.searchQuery?props.data.filter(e=>e.cust_number==props.searchQuery):props.data)
-  // let oneQueryData = (props.doc_id?props.data.filter(e=>String(e.doc_id).startsWith(props.doc_id)):props.data);
-  // let twoQueryData = (props.invoice_id?oneQueryData.filter(e=>String(e.invoice_id).startsWith(props.invoice_id)):oneQueryData);
-  // let threeQueryData = (props.cust_number?twoQueryData.filter(e=>String(e.cust_number).startsWith(props.cust_number)):twoQueryData);
-  // let fourQueryData = (props.buisness_year?threeQueryData.filter(e=>String(e.buisness_year).startsWith(props.buisness_year)):threeQueryData);
-  // console.log("in table",props.seacrhData);
+  const[rowCount,setRowCount]=React.useState();
+  
+  useEffect(async()=>{
+       let response = await FetchCount(); 
+       setRowCount(response.data.users[0].user_count);
+
+  });
+
   let tableData = (props.searchItem?props.data.filter(e=>String(e.cust_number).startsWith(props.searchItem)):props.data);
 
   return (
@@ -43,16 +44,30 @@ export default function DataTable(props) {
           rows={tableData}
           columns={columns}
           getRowId={(data) => data.sl_no}
-          //pageSize={10}
+          initialState={{
+            pagination: { page: 0}
+          }}
           checkboxSelection
+          onSelectionModelChange={(id)=>{props.onChecked(id)}}
           rowHeight={30}
-          onSelectionModelChange={(id)=>{props.onChecked(id)
-          //console.log(id)
-        }}
+          pageSize={props.pageSize}
+          onPageSizeChange={(e)=>{
+            console.log("on page size change",e);
+            console.log("on page ",props.page);
+            props.loadPage(props.page,e);
+            }}
+          rowsPerPageOptions={[5,10, 20,30,50,100]}
+          paginationMode='server'
+          rowCount = {rowCount}
+          onPageChange ={(e)=>{
+            props.loadPage(e+1,props.pageSize);
+           
+          }}
+        
+        
           
         />
       </div>
     </ThemeProvider>
   );
 }
-

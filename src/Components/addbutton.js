@@ -59,11 +59,6 @@ export default function CreateAddModalButton(props) {
     }
   }
 
-  // useEffect(async () => {
-  //   setData(await getData())
-
-  // }, []);
-
 
 
   return (<>
